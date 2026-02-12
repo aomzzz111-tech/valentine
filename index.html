@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Valentine 💕</title>
+
+<style>
+body{
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg,#ffd1dc,#ffe6f0);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+.card{
+    background:white;
+    padding:40px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    width:320px;
+    position:relative;
+    z-index:2;
+}
+
+h1{
+    color:#ff4d6d;
+}
+
+button{
+    background:#ff4d6d;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:30px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#ff1e50;
+}
+
+#story{
+    display:none;
+    margin-top:20px;
+}
+
+#story img{
+    width:100%;
+    border-radius:15px;
+    margin-bottom:10px;
+}
+
+/* หัวใจลอย */
+.heart{
+    position:absolute;
+    color:#ff4d6d;
+    font-size:20px;
+    animation: float 4s linear infinite;
+}
+
+@keyframes float{
+    0%{transform: translateY(0); opacity:1;}
+    100%{transform: translateY(-800px); opacity:0;}
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+    <h1>❤️ Happy Valentine Day</h1>
+    <p>ตกใจมั้ย? 55. 💕</p>
+    <button onclick="showStory()">มีอะไรอยากจะบอก ไม่รู้ว่าจะอยากรู้มั้ย</button>
+
+    <div id="story">
+        <!-- เปลี่ยนรูปตรงนี้ -->
+        <img src="https://i.imgur.com/8Km9tLL.jpg">
+        <p>ตั้งแต่วันที่เราได้กลับมาคุยกัน หนูมีความสุกขึ้นทุกวันเลยนะ</p>
+        <p>ห้ามหาย! ห้ามทิ้ง! ห้ามเลิก! ต้องรักหนูเยอะๆ เข้าใจมั้ย? เลิกคิดแบบที่คิดอยู่ได้แล้ว หนูไม่เป็นอะไรเลย หนูมีพี่มันดีมากๆแล้ว พี่ห้ามไปน่ารักกับใครที่ไหนเด็ดขาดเลยนะรู้ไหม เก็บความใจดีไว้ให้หนูคนเดียวพอ เวลาพี่หายไปนิดเดียวหนูก็เริ่มเหงาแล้วเนี่ย... ต่อจากนี้ต้องรักหนูให้เยอะขึ้นอีกนะ เพิ่มขึ้นทุกวันแบบไม่มีวันหยุดเลยได้มะ? รักนะ ❤️</p>
+    </div>
+</div>
+
+<!-- เพลง (เปลี่ยนลิงก์เพลงได้) -->
+<audio id="bgmusic" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function showStory(){
+    document.getElementById("story").style.display="block";
+    document.getElementById("bgmusic").play();
+
+    setInterval(createHeart,300);
+}
+
+function createHeart(){
+    const heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*window.innerWidth+"px";
+    heart.style.top="90%";
+    heart.style.fontSize=(Math.random()*20+10)+"px";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{heart.remove();},4000);
+}
+</script>
+
+</body>
+</html>
