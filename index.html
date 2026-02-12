@@ -1,259 +1,186 @@
 <!DOCTYPE html>
-<html lang="th">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Valentine🤍</title>
-
+<title>For You ❤️</title>
 <style>
 body{
-    margin:0;
-    font-family:'Segoe UI',sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    background:#ffe6f0;
-    overflow:hidden;
-}
-.page{ display:none; width:360px; text-align:center; padding:30px; }
-.active{ display:block; }
-
-.box{
-    background:white;
-    padding:25px;
-    border-radius:20px;
-    box-shadow:0 8px 25px rgba(0,0,0,0.15);
-    animation:fadeIn 0.5s ease;
+  margin:0;
+  font-family:sans-serif;
+  background:linear-gradient(#ffd6e7,#ffeef5);
+  text-align:center;
 }
 
-.pink-box{
-    background:#fff0f6;
-    padding:25px;
-    border-radius:20px;
-    border:2px solid #ffc2d6;
-    animation:fadeIn 0.5s ease;
+.card{
+  background:white;
+  width:90%;
+  max-width:400px;
+  margin:40px auto;
+  padding:20px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+canvas{
+  border-radius:15px;
+}
+
+.hidden{
+  display:none;
 }
 
 button{
-    padding:12px 20px;
-    border:none;
-    border-radius:25px;
-    cursor:pointer;
-    margin-top:15px;
-    font-size:16px;
-    background:#ff6b9e;
-    color:white;
-    transition:0.3s;
-}
-button:hover{ transform:scale(1.05); }
-
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(15px);}
-    to{opacity:1; transform:translateY(0);}
+  padding:12px 20px;
+  border:none;
+  border-radius:25px;
+  font-size:16px;
+  cursor:pointer;
 }
 
-.scratch-container{ position:relative; width:100%; margin:15px 0; }
-.real-image{ width:100%; border-radius:15px; }
-#scratch{ position:absolute; top:0; left:0; width:100%; height:100%; border-radius:15px; }
+.yes{
+  background:#ff5c8a;
+  color:white;
+}
 
-.btn-box{ position:relative; height:120px; }
-.yes-btn{ position:absolute; left:20%; }
-.no-btn{ position:absolute; left:55%; background:#999; }
+.no{
+  background:#999;
+  color:white;
+  position:absolute;
+}
 
 .popup{
-    position:fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    background:rgba(0,0,0,0.4);
-    display:none;
-    justify-content:center;
-    align-items:center;
-}
-.popup-box{
-    background:white;
-    padding:30px;
-    border-radius:20px;
-    text-align:center;
-    width:280px;
-    animation:pop 0.4s ease;
-}
-@keyframes pop{
-    from{transform:scale(0.6); opacity:0;}
-    to{transform:scale(1); opacity:1;}
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,0.4);
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
-.final-screen{
-    position:fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    background:linear-gradient(135deg,#ffd1dc,#ffe6f0);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-}
-.final-text{
-    background:white;
-    padding:40px;
-    border-radius:25px;
-    font-size:22px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+.popup-box{
+  background:white;
+  padding:25px;
+  border-radius:20px;
+  width:80%;
+  max-width:300px;
 }
 </style>
 </head>
-
 <body>
 
-<div id="page1" class="page active">
-<div class="box">
-<h2>🤍HappyValentine’sDay🤍</h2>
-<p>พี่ตกใจมั้ย? 55.🤣</p>
-<button onclick="startValentine()">กดตรงนี้ก่อนนะ 🤍</button>
-</div>
-</div>
-
-<div id="page2" class="page">
-<div class="box">
-<p><b>😅หนูมีอะไรอยากให้พี่ดู‼️</b></p>
-
-<div class="scratch-container">
-<img src="S__19947524.jpg" class="real-image">
-<canvas id="scratch"></canvas>
-</div>
-
-<p>ขูดให้สะอาดนะ..</p>
-</div>
-</div>
-
-<div class="popup" id="popup">
-<div class="popup-box">
-<p>🤣ยิ้มอ่าสิ่ Ai ทำให้ได้เหมือนแค่นิ่ 55.🤣</p>
-<button onclick="closePopup()">🤫หนูอยากจะบอกพี่</button>
-</div>
-</div>
-
-<div id="page3" class="page">
-<div class="pink-box">
-<p><b>ขอบคุณพี่นะ ที่กลับมาคุยกะหนูในวันนั้น🌻</b></p>
-<p style="font-size:14px;">
-🤍หนู ขอให้พี่ไม่หายไปจากหนู ไม่ทิ้งหนู ไม่เลิกกับหนู ต้องรักหนูเยอะๆ เข้าใจมั้ย?!
-เลิกคิดแบบที่พี่คิดอยู่ได้แล้ว พี่ไม่ได้เห็นแก่ตัวเลย หนูไม่เป็นอะไรเลย
-หนูมีพี่มันดีมากๆแล้ว อย่าให้หนูต้องกลัวว่าพี่จะทิ้งหนูเลยนะ
-พี่ต้องรักหนูเยอะๆ สนใจหนูด้วย ห้ามเจ้าชู้ 😡 นะคะคนแก่ของหนู🤍
-</p>
-<button onclick="nextPage(4)">😏สุดท้ายหนูอยากถาม</button>
-</div>
-</div>
-
-<div id="page4" class="page">
-<div class="box">
-<h3>พี่รักหนูเยอะๆได้มั้ยคับ?🙂</h3>
-<div class="btn-box">
-<button class="yes-btn" onclick="yesAnswer()">Yes 🤍</button>
-<button class="no-btn" onmouseover="moveNo()" ontouchstart="moveNo()">No 😜</button>
-</div>
-</div>
-</div>
-
-<div class="final-screen" id="finalScreen">
-<div class="final-text">
-เย้‼️ หนูกะรักพี่เยอะสุด🤍🌻<br><br>จบ
-</div>
-</div>
-
-
-<audio id="bgmusic" loop>
-    <source src="music.mp3" type="audio/mpeg">
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
 </audio>
 
+<div class="card" id="page1">
+  <h3>😁 หนูมีอะไรอยากให้พี่พูด!!</h3>
+
+  <div style="position:relative;">
+    <img id="realImage" src="yourphoto.jpg" width="100%" style="border-radius:15px;">
+    <canvas id="scratch"></canvas>
+  </div>
+
+  <p>ขูดให้สะอาดนะ..</p>
+
+  <button id="nextBtn" class="hidden" onclick="goPage2()">พี่! หนูอยากถาม</button>
+</div>
+
+<div class="popup hidden" id="page2">
+  <div class="popup-box">
+    <h3>เป็นแฟนกันไหม 💕</h3>
+    <br>
+    <button class="yes" onclick="love()">YES</button>
+    <button class="no" id="noBtn">NO</button>
+  </div>
+</div>
 
 <script>
+const canvas = document.getElementById("scratch");
+const img = document.getElementById("realImage");
+const ctx = canvas.getContext("2d");
+const nextBtn = document.getElementById("nextBtn");
 
-const music=document.getElementById("bgmusic");
-music.volume=0.3;
+canvas.width = img.offsetWidth;
+canvas.height = img.offsetHeight;
+canvas.style.position="absolute";
+canvas.style.left="0";
+canvas.style.top="0";
 
-function startValentine(){
-music.play();
-nextPage(2);
-}
-
-function nextPage(num){
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-document.getElementById("page"+num).classList.add("active");
-}
-
-function showPopup(){ document.getElementById("popup").style.display="flex"; }
-
-function closePopup(){
-document.getElementById("popup").style.display="none";
-nextPage(3);
-}
-
-function yesAnswer(){
-document.getElementById("finalScreen").style.display="flex";
-music.volume=0.5;
-}
-
-let scale=1;
-function moveNo(){
-const noBtn=document.querySelector(".no-btn");
-const box=document.querySelector(".btn-box");
-const maxX=box.clientWidth-noBtn.clientWidth;
-const maxY=box.clientHeight-noBtn.clientHeight;
-noBtn.style.left=Math.random()*maxX+"px";
-noBtn.style.top=Math.random()*maxY+"px";
-scale-=0.1;
-if(scale<0.3) scale=0.3;
-noBtn.style.transform="scale("+scale+")";
-}
-
-const canvas=document.getElementById("scratch");
-const ctx=canvas.getContext("2d");
-const container=document.querySelector(".scratch-container");
-
-canvas.width=container.offsetWidth;
-canvas.height=container.offsetHeight;
-
-ctx.fillStyle="#ff99bb";
+ctx.fillStyle="#bbb";
 ctx.fillRect(0,0,canvas.width,canvas.height);
+
 ctx.globalCompositeOperation="destination-out";
 
 let isDrawing=false;
-let popupShown=false;
+
+function getXY(e){
+  const rect=canvas.getBoundingClientRect();
+  if(e.touches){
+    return {
+      x:e.touches[0].clientX-rect.left,
+      y:e.touches[0].clientY-rect.top
+    }
+  }else{
+    return {
+      x:e.clientX-rect.left,
+      y:e.clientY-rect.top
+    }
+  }
+}
 
 function scratch(e){
-if(!isDrawing) return;
-const rect=canvas.getBoundingClientRect();
-const x=(e.touches?e.touches[0].clientX:e.clientX)-rect.left;
-const y=(e.touches?e.touches[0].clientY:e.clientY)-rect.top;
-ctx.beginPath();
-ctx.arc(x,y,20,0,Math.PI*2);
-ctx.fill();
-checkProgress();
-}
-
-function checkProgress(){
-if(popupShown) return;
-const pixels=ctx.getImageData(0,0,canvas.width,canvas.height);
-let transparent=0;
-for(let i=3;i<pixels.data.length;i+=4){
-if(pixels.data[i]===0) transparent++;
-}
-let percent=transparent/(pixels.data.length/4);
-if(percent>0.8){
-popupShown=true;
-showPopup();
-}
+  if(!isDrawing) return;
+  const pos=getXY(e);
+  ctx.beginPath();
+  ctx.arc(pos.x,pos.y,20,0,Math.PI*2);
+  ctx.fill();
+  checkProgress();
 }
 
 canvas.addEventListener("mousedown",()=>isDrawing=true);
 canvas.addEventListener("mouseup",()=>isDrawing=false);
 canvas.addEventListener("mousemove",scratch);
-canvas.addEventListener("touchstart",()=>isDrawing=true);
-canvas.addEventListener("touchend",()=>isDrawing=false);
-canvas.addEventListener("touchmove",scratch);
 
+canvas.addEventListener("touchstart",(e)=>{isDrawing=true;});
+canvas.addEventListener("touchend",()=>isDrawing=false);
+canvas.addEventListener("touchmove",(e)=>{
+  scratch(e);
+});
+
+function checkProgress(){
+  const pixels=ctx.getImageData(0,0,canvas.width,canvas.height);
+  let cleared=0;
+  for(let i=3;i<pixels.data.length;i+=4){
+    if(pixels.data[i]==0) cleared++;
+  }
+  const percent=cleared/(canvas.width*canvas.height)*100;
+  if(percent>80){
+    canvas.remove();
+    nextBtn.classList.remove("hidden");
+  }
+}
+
+function goPage2(){
+  document.getElementById("page1").classList.add("hidden");
+  document.getElementById("page2").classList.remove("hidden");
+}
+
+function love(){
+  alert("รักพี่ที่สุดเลย 💖");
+}
+
+const noBtn=document.getElementById("noBtn");
+noBtn.addEventListener("mouseover",moveNo);
+noBtn.addEventListener("touchstart",moveNo);
+
+function moveNo(){
+  const x=Math.random()*200;
+  const y=Math.random()*200;
+  noBtn.style.left=x+"px";
+  noBtn.style.top=y+"px";
+  noBtn.style.transform="scale(0.8)";
+}
 </script>
 
 </body>
