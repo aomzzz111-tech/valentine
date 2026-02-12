@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Valentine 💕</title>
+<title>My Valentine💕</title>
 
 <style>
 body{
@@ -14,94 +14,167 @@ body{
     justify-content:center;
     align-items:center;
     height:100vh;
-    overflow:hidden;
 }
 
 .card{
     background:white;
-    padding:40px;
+    padding:30px;
     border-radius:25px;
     text-align:center;
     box-shadow:0 10px 30px rgba(0,0,0,0.1);
     width:320px;
     position:relative;
-    z-index:2;
 }
 
 h1{
     color:#ff4d6d;
 }
 
+/* ===== รูปขูด ===== */
+.scratch-container {
+    position: relative;
+    width: 100%;
+    margin: 15px 0;
+}
+
+.real-image {
+    width: 100%;
+    border-radius: 15px;
+    display: block;
+}
+
+#scratch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}
+
+/* ===== ปุ่ม ===== */
+.btn-box{
+    position:relative;
+    height:120px;
+    margin-top:15px;
+}
+
 button{
-    background:#ff4d6d;
-    color:white;
+    padding:10px 20px;
     border:none;
-    padding:12px 25px;
-    border-radius:30px;
+    border-radius:20px;
     cursor:pointer;
     font-size:16px;
-}
-
-button:hover{
-    background:#ff1e50;
-}
-
-#story{
-    display:none;
-    margin-top:20px;
-}
-
-#story img{
-    width:100%;
-    border-radius:15px;
-    margin-bottom:10px;
-}
-
-/* หัวใจลอย */
-.heart{
     position:absolute;
-    color:#ff4d6d;
-    font-size:20px;
-    animation: float 4s linear infinite;
 }
 
-@keyframes float{
-    0%{transform: translateY(0); opacity:1;}
-    100%{transform: translateY(-800px); opacity:0;}
+.yes-btn{
+    background:#ff4d6d;
+    color:white;
+    left:25%;
+}
+
+.no-btn{
+    background:#999;
+    color:white;
+    left:55%;
+}
+
+#result{
+    margin-top:10px;
+    color:#ff4d6d;
+    font-weight:bold;
 }
 </style>
 </head>
+
 <body>
 
 <div class="card">
-    <h1>❤️ Happy Valentine Day</h1>
-    <p>ตกใจมั้ย? 55. 💕</p>
-    <button onclick="showStory()">มีอะไรอยากจะบอก ไม่รู้ว่าจะอยากรู้มั้ย</button>
+    <h1>❤️My Valentine</h1>
+    <p>ขูดดูรูปก่อนนะ 💕</p>
 
-    <div id="story">
-        <!-- เปลี่ยนรูปตรงนี้ -->
-        <img src="https://i.imgur.com/8Km9tLL.jpg">
-        <p>ตั้งแต่วันที่เราได้กลับมาคุยกัน หนูมีความสุขขึ้นทุกวันเลยนะ</p>
-        <p>ห้ามหาย! ห้ามทิ้ง! ห้ามเลิก! ต้องรักหนูเยอะๆ เข้าใจมั้ย? เลิกคิดแบบที่คิดอยู่ได้แล้ว หนูไม่เป็นอะไรเลย หนูมีพี่มันดีมากๆแล้ว พี่ห้ามไปน่ารักกับใครที่ไหนเด็ดขาดเลยนะรู้ไหม เก็บความใจดีไว้ให้หนูคนเดียวพอ เวลาพี่หายไปนิดเดียวหนูก็เริ่มเหงาแล้วเนี่ย... ต่อจากนี้ต้องรักหนูให้เยอะขึ้นอีกนะ เพิ่มขึ้นทุกวันแบบไม่มีวันหยุดเลยได้มะ? รักนะ ❤️</p>
+    <!-- ใส่ลิงก์รูปตรง src ด้านล่าง -->
+    <div class="scratch-container">
+        <img src="PUT-YOUR-IMAGE-LINK-HERE" class="real-image">
+        <canvas id="scratch"></canvas>
     </div>
+
+    <h3>รักหนูได้มั้ย?😳</h3>
+
+    <div class="btn-box">
+        <button class="yes-btn" onclick="loveAnswer()">Yes 💖</button>
+        <button class="no-btn" onmouseover="moveNo()" ontouchstart="moveNo()">No 😜</button>
+    </div>
+
+    <p id="result"></p>
 </div>
 
-<!-- เพลง (เปลี่ยนลิงก์เพลงได้) -->
+<!-- ใส่ลิงก์เพลง mp3 ตรง src -->
 <audio id="bgmusic" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <source src="PUT-YOUR-MUSIC-LINK-HERE" type="audio/mpeg">
 </audio>
 
 <script>
-function showStory(){
-    document.getElementById("story").style.display="block";
-    document.getElementById("bgmusic").play();
+/* ===== เพลงคลอ ===== */
+const music = document.getElementById("bgmusic");
+music.volume = 0.3;
+document.body.addEventListener("click", () => {
+    music.play();
+}, { once:true });
 
-    setInterval(createHeart,300);
+/* ===== ระบบขูด ===== */
+const canvas = document.getElementById("scratch");
+const ctx = canvas.getContext("2d");
+const container = document.querySelector(".scratch-container");
+
+canvas.width = container.offsetWidth;
+canvas.height = container.offsetHeight;
+
+ctx.fillStyle = "#ff99bb";
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.globalCompositeOperation = "destination-out";
+
+let isDrawing = false;
+
+function scratch(e) {
+    if (!isDrawing) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+    const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+
+    ctx.beginPath();
+    ctx.arc(x, y, 18, 0, Math.PI * 2);
+    ctx.fill();
 }
 
-function createHeart(){
-    const heart=document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML="❤️";
-    heart.style.left=Math.random()*window.innerWidth+"px";
-    heart.style.top="90%";
+canvas.addEventListener("mousedown", () => isDrawing = true);
+canvas.addEventListener("mouseup", () => isDrawing = false);
+canvas.addEventListener("mousemove", scratch);
+
+canvas.addEventListener("touchstart", () => isDrawing = true);
+canvas.addEventListener("touchend", () => isDrawing = false);
+canvas.addEventListener("touchmove", scratch);
+
+/* ===== ปุ่ม No วิ่ง ===== */
+function moveNo(){
+    const noBtn=document.querySelector(".no-btn");
+    const box=document.querySelector(".btn-box");
+
+    const maxX=box.clientWidth-noBtn.clientWidth;
+    const maxY=box.clientHeight-noBtn.clientHeight;
+
+    noBtn.style.left=Math.random()*maxX+"px";
+    noBtn.style.top=Math.random()*maxY+"px";
+}
+
+/* ===== กด Yes ===== */
+function loveAnswer(){
+    document.getElementById("result").innerHTML =
+        "เย้ 💖 หนูรักพี่เยอะมากสุดด 😆💕";
+}
+</script>
+
+</body>
+</html>
