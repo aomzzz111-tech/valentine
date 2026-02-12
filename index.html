@@ -16,7 +16,6 @@ body{
     background:#ffe6f0;
     overflow:hidden;
 }
-
 .page{ display:none; width:360px; text-align:center; padding:30px; }
 .active{ display:block; }
 
@@ -54,17 +53,14 @@ button:hover{ transform:scale(1.05); }
     to{opacity:1; transform:translateY(0);}
 }
 
-/* scratch */
 .scratch-container{ position:relative; width:100%; margin:15px 0; }
 .real-image{ width:100%; border-radius:15px; }
 #scratch{ position:absolute; top:0; left:0; width:100%; height:100%; border-radius:15px; }
 
-/* yes no */
 .btn-box{ position:relative; height:120px; }
 .yes-btn{ position:absolute; left:20%; }
 .no-btn{ position:absolute; left:55%; background:#999; }
 
-/* popup */
 .popup{
     position:fixed;
     top:0; left:0;
@@ -87,7 +83,6 @@ button:hover{ transform:scale(1.05); }
     to{transform:scale(1); opacity:1;}
 }
 
-/* final screen */
 .final-screen{
     position:fixed;
     top:0; left:0;
@@ -97,7 +92,6 @@ button:hover{ transform:scale(1.05); }
     justify-content:center;
     align-items:center;
     text-align:center;
-    animation:fadeIn 0.6s ease;
 }
 .final-text{
     background:white;
@@ -111,52 +105,47 @@ button:hover{ transform:scale(1.05); }
 
 <body>
 
-<!-- หน้า1 -->
 <div id="page1" class="page active">
 <div class="box">
 <h2>🤍HappyValentine’sDay🤍</h2>
-<p>🙂 พี่ตกใจมั้ย? 55.</p>
-<button onclick="nextPage(2)">(เบาเสียงก่อน มันจะมีเพลง แต่ต้องฟังนะ!)</button>
+<p>พี่ตกใจมั้ย? 55.🤣</p>
+<button onclick="startValentine()">กดตรงนี้ก่อนนะ 🤍</button>
 </div>
 </div>
 
-<!-- หน้า2 -->
 <div id="page2" class="page">
 <div class="box">
-<p><b>มีอะไรอยากให้พี่ดู‼️</b></p>
+<p><b>😅หนูมีอะไรอยากให้พี่ดู‼️</b></p>
 
 <div class="scratch-container">
-<img src="https://drive.google.com/uc?export=view&id=1y9c2ZukiGWFSEbbG0WyINgh3vhcVTJTm" class="real-image">
+<img src="https://lh3.googleusercontent.com/d/1y9c2ZukiGWFSEbbG0WyINgh3vhcVTJTm" class="real-image">
 <canvas id="scratch"></canvas>
 </div>
 
-<p>ขูดให้สะอาดนะคับ..</p>
+<p>ขูดให้สะอาดนะ..</p>
 </div>
 </div>
 
-<!-- popup -->
 <div class="popup" id="popup">
 <div class="popup-box">
-<p>ยิ้มอ่าสิ่ Ai ทำให้ได้เหมือนแค่นิ่ 55.😜</p>
-<button onclick="closePopup()">หนูอยากจะบอกพี่</button>
+<p>🤣ยิ้มอ่าสิ่ Ai ทำให้ได้เหมือนแค่นิ่ 55.🤣</p>
+<button onclick="closePopup()">🤫หนูอยากจะบอกพี่</button>
 </div>
 </div>
- 
-<!-- หน้า3 -->
+
 <div id="page3" class="page">
 <div class="pink-box">
 <p><b>ขอบคุณพี่นะ ที่กลับมาคุยกะหนูในวันนั้น🌻</b></p>
 <p style="font-size:14px;">
-หนู ขอให้พี่ไม่หายไปจากหนู ไม่ทิ้งหนู ไม่เลิกกับหนู ต้องรักหนูเยอะๆ เข้าใจมั้ย?! 
-เลิกคิดแบบที่พี่คิดอยู่ได้แล้ว พี่ไม่ได้เห็นแก่ตัวเลย หนูไม่เป็นอะไรเลย 
-หนูมีพี่มันดีมากๆแล้ว อย่าให้หนูต้องกลัวว่าพี่จะทิ้งหนูเลยนะ 
-พี่ต้องรักหนูเยอะๆ สนใจหนูด้วย ห้ามเจ้าชู้ นะคนแก่ของหนู🤍😜
+🤍หนู ขอให้พี่ไม่หายไปจากหนู ไม่ทิ้งหนู ไม่เลิกกับหนู ต้องรักหนูเยอะๆ เข้าใจมั้ย?!
+เลิกคิดแบบที่พี่คิดอยู่ได้แล้ว พี่ไม่ได้เห็นแก่ตัวเลย หนูไม่เป็นอะไรเลย
+หนูมีพี่มันดีมากๆแล้ว อย่าให้หนูต้องกลัวว่าพี่จะทิ้งหนูเลยนะ
+พี่ต้องรักหนูเยอะๆ สนใจหนูด้วย ห้ามเจ้าชู้ 😡 นะคะคนแก่ของหนู🤍
 </p>
-<button onclick="nextPage(4)">สุดท้ายหนูอยากถาม</button>
+<button onclick="nextPage(4)">😏สุดท้ายหนูอยากถาม</button>
 </div>
 </div>
 
-<!-- หน้า4 -->
 <div id="page4" class="page">
 <div class="box">
 <h3>พี่รักหนูเยอะๆได้มั้ยคับ?🙂</h3>
@@ -167,45 +156,43 @@ button:hover{ transform:scale(1.05); }
 </div>
 </div>
 
-<!-- final -->
 <div class="final-screen" id="finalScreen">
 <div class="final-text">
 เย้‼️ หนูกะรักพี่เยอะสุด🤍🌻<br><br>จบ
 </div>
 </div>
 
-<!-- เพลง -->
 <audio id="bgmusic" loop>
 <source src="https://drive.google.com/uc?export=download&id=1Eu3OWfp0HQCTdg1pMAJbwllEgvsogCVl" type="audio/mpeg">
 </audio>
 
 <script>
 
-/* เพลง */
 const music=document.getElementById("bgmusic");
 music.volume=0.3;
-document.body.addEventListener("click",()=>{music.play();},{once:true});
 
-/* เปลี่ยนหน้า */
+function startValentine(){
+music.play();
+nextPage(2);
+}
+
 function nextPage(num){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.getElementById("page"+num).classList.add("active");
 }
 
-/* popup */
 function showPopup(){ document.getElementById("popup").style.display="flex"; }
+
 function closePopup(){
 document.getElementById("popup").style.display="none";
 nextPage(3);
 }
 
-/* final */
 function yesAnswer(){
 document.getElementById("finalScreen").style.display="flex";
 music.volume=0.5;
 }
 
-/* NO วิ่ง */
 let scale=1;
 function moveNo(){
 const noBtn=document.querySelector(".no-btn");
@@ -219,7 +206,6 @@ if(scale<0.3) scale=0.3;
 noBtn.style.transform="scale("+scale+")";
 }
 
-/* scratch 80% */
 const canvas=document.getElementById("scratch");
 const ctx=canvas.getContext("2d");
 const container=document.querySelector(".scratch-container");
