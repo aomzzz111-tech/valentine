@@ -204,9 +204,18 @@ const music=document.getElementById("bgmusic");
 music.volume=0.3;
 
 function startValentine(){
+
+popupShown=false;   // รีเซ็ต popup
+scale=1;            // รีเซ็ตปุ่ม No
+
 music.play();
+music.currentTime=0;
+
 nextPage(2);
-setTimeout(initScratch,100); 
+
+setTimeout(()=>{
+    initScratch();
+},100);
 }
 
 function nextPage(num){
@@ -234,7 +243,10 @@ function stopPetals(){
 function goHome(){
     document.getElementById("finalScreen").style.display="none";
     nextPage(1);
+    music.pause();        // หยุดเพลง
+    music.currentTime=0;  // รีเซ็ตเวลาเพลง
     music.volume=0.3;
+    stopPetals();         // ถ้ามีกลีบ
 }
     
 let scale=1;
@@ -257,6 +269,8 @@ const container=document.querySelector(".scratch-container");
 function initScratch(){
     canvas.width = container.offsetWidth;
     canvas.height = container.offsetHeight;
+
+    ctx.clearRect(0,0,canvas.width,canvas.height);  // ล้างก่อน
 
     ctx.fillStyle="#ff99bb";
     ctx.fillRect(0,0,canvas.width,canvas.height);
