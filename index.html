@@ -129,6 +129,8 @@ button:hover{ transform:scale(1.05); }
     }
 }
 
+/* ===== Emoji Floating ===== */
+
 body{
     margin:0;
     overflow:hidden;
@@ -147,42 +149,18 @@ body{
 
 .heart{
     position:absolute;
-    bottom:-120px;
-    width:30px;
-    height:30px;
-    background:linear-gradient(145deg,#ffffff,#ffb6d5);
-    transform:rotate(45deg);
+    bottom:-50px;
+    font-size:24px;
     animation: floatUp linear forwards;
-    opacity:0.9;
-}
-
-.heart:before,
-.heart:after{
-    content:"";
-    position:absolute;
-    width:30px;
-    height:30px;
-    background:inherit;
-    border-radius:50%;
-}
-
-.heart:before{
-    top:-15px;
-    left:0;
-}
-
-.heart:after{
-    left:-15px;
-    top:0;
 }
 
 @keyframes floatUp{
     0%{
-        transform:translateY(0) rotate(45deg) scale(1);
-        opacity:0.9;
+        transform:translateY(0) scale(1);
+        opacity:1;
     }
     100%{
-        transform:translateY(-110vh) rotate(45deg) scale(1.3);
+        transform:translateY(-110vh) scale(1.8);
         opacity:0;
     }
 }
@@ -191,10 +169,9 @@ body{
 </head>
 
 <body>
-  
 <div class="heart-bg" id="heartBg"></div>
-    
 <div id="page1" class="page active">
+    
 <div class="box">
 <h2>🤍HappyValentine’sDay🤍</h2>
 <p>พี่ตกใจมั้ย? 55.🤣</p>
@@ -389,16 +366,15 @@ canvas.addEventListener("mousemove",scratch);
 <script>
 const heartBg = document.getElementById("heartBg");
 
+const emojis = ["🤍","🩷","💛","🌻"];
+
 function createHeart(){
     const heart = document.createElement("div");
     heart.classList.add("heart");
 
+    heart.innerText = emojis[Math.floor(Math.random() * emojis.length)];
     heart.style.left = Math.random() * 100 + "vw";
-
-    const size = Math.random() * 20 + 20;
-    heart.style.width = size + "px";
-    heart.style.height = size + "px";
-
+    heart.style.fontSize = (Math.random() * 20 + 20) + "px";
     heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
 
     heartBg.appendChild(heart);
@@ -408,8 +384,8 @@ function createHeart(){
     },7000);
 }
 
-setInterval(createHeart, 500);
-</script>    
+setInterval(createHeart, 400);
+</script>   
     
 </body>
 </html>
