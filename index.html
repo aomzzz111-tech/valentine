@@ -96,7 +96,7 @@ button:hover{ transform:scale(1.05); }
 .final-text{
     background:white;
     padding:40px;
-    border-radius:25px;
+    dius:25px;
     font-size:22px;
     box-shadow:0 10px 30px rgba(0,0,0,0.15);
 }
@@ -245,12 +245,20 @@ showPopup();
 }
 }
 
-canvas.addEventListener("mousedown",()=>isDrawing=true);
-canvas.addEventListener("mouseup",()=>isDrawing=false);
-canvas.addEventListener("mousemove",scratch);
-canvas.addEventListener("touchstart",()=>isDrawing=true);
-canvas.addEventListener("touchend",()=>isDrawing=false);
-canvas.addEventListener("touchmove",scratch);
+canvas.addEventListener("touchstart",(e)=>{
+  e.preventDefault();
+  isDrawing=true;
+});
+
+canvas.addEventListener("touchend",(e)=>{
+  e.preventDefault();
+  isDrawing=false;
+});
+
+canvas.addEventListener("touchmove",(e)=>{
+  e.preventDefault();
+  scratch(e);
+});
 
 </script>
 
