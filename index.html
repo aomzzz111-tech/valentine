@@ -186,7 +186,6 @@ button:hover{ transform:scale(1.05); }
 <div class="final-text">
 <span class="close-btn" onclick="goHome()">✖</span>
 เย้‼️ หนูกะรักพี่เยอะสุด🤍🌻<br><br>
-<button onclick="goHome()">กลับหน้าแรก 🤍</button>
 </div>
 
 <audio id="bgmusic" loop>
@@ -219,31 +218,8 @@ nextPage(3);
 function yesAnswer(){
 document.getElementById("finalScreen").style.display="flex";
 music.volume=0.5;
-startPetals();
 }
 
-function goHome(){
-document.getElementById("finalScreen").style.display="none";
-nextPage(1);
-music.volume=0.3;
-stopPetals();
-}
-    
-let petalInterval;
-
-function startPetals(){
-    petalInterval = setInterval(()=>{
-        const petal=document.createElement("div");
-        petal.classList.add("petal");
-        petal.innerHTML="🌸";
-        petal.style.left=Math.random()*100+"vw";
-        petal.style.animationDuration=(Math.random()*3+4)+"s";
-        petal.style.opacity=Math.random();
-        document.body.appendChild(petal);
-
-        setTimeout(()=>{ petal.remove(); },7000);
-    },400);
-}
 
 function stopPetals(){
     clearInterval(petalInterval);
