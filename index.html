@@ -182,6 +182,7 @@ music.volume=0.3;
 function startValentine(){
 music.play();
 nextPage(2);
+setTimeout(initScratch,100); 
 }
 
 function nextPage(num){
@@ -218,12 +219,14 @@ const canvas=document.getElementById("scratch");
 const ctx=canvas.getContext("2d");
 const container=document.querySelector(".scratch-container");
 
-canvas.width=container.offsetWidth;
-canvas.height=container.offsetHeight;
+function initScratch(){
+    canvas.width = container.offsetWidth;
+    canvas.height = container.offsetHeight;
 
-ctx.fillStyle="#ff99bb";
-ctx.fillRect(0,0,canvas.width,canvas.height);
-ctx.globalCompositeOperation="destination-out";
+    ctx.fillStyle="#ff99bb";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.globalCompositeOperation="destination-out";
+}
 
 let isDrawing=false;
 let popupShown=false;
