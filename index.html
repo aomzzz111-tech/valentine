@@ -106,12 +106,18 @@ button:hover{ transform:scale(1.05); }
 }
 
 .final-text{
-    background:white;
-    padding:40px;
+    background:linear-gradient(145deg,#ffffff,#fff5f9);
+    padding:30px 25px;
     border-radius:25px;
-    font-size:22px;
+    max-width:320px;
+    width:90%;
+    font-size:18px;
+    line-height:1.6;
     box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    text-align:center;
+    animation:fadeIn 0.6s ease;
 }
+
 
 .petal{
     position:fixed;
@@ -226,10 +232,19 @@ body{
   
 <div id="finalScreen" class="final-screen">
     <div class="final-text">
-        🌻55.หนูบังคับพี่ หนูกะรักพี่เยอะสุดนะ🤍<br><br>
-        <p>(เขิลได้ยัง?หนูตั้งใจเขียนโค้ด2วันเรยนะ🤣)</p>
-        <button onclick="goHome()">กลับหน้าแรก 🤍</button>
-    </div>
+    <h3 style="margin-top:0;">🌻 หนูบังคับพี่ 😝</h3>
+
+    <p>
+        หนูกะรักพี่เยอะสุดนะ 🤍
+    </p>
+
+    <p style="font-size:14px; opacity:0.8;">
+        (เขิลได้ยัง? หนูตั้งใจเขียนโค้ด 2 วันเลยนะ 🤣)
+    </p>
+
+    <button onclick="goHome()">กลับหน้าแรก 🤍</button>
+</div>
+
 </div>
 
 <audio id="bgmusic" loop>
