@@ -260,24 +260,19 @@ music.volume=0.3;
 
 function startValentine(){
 
-popupShown=false;   // รีเซ็ต popup
-scale=1;            // รีเซ็ตปุ่ม No
+    popupShown=false;
+    scale=1;
 
-music.play();
-music.currentTime=0;
+    music.currentTime=0;
+    music.play();
 
-nextPage(2);
+    nextPage(2);
 
-// รอให้รูปโหลดก่อน แล้วค่อยเริ่ม scratch
-const img = document.getElementById("realImage");
-
-if (img.complete) {
-    initScratch();
-} else {
-    img.onload = function() {
+    setTimeout(()=>{
         initScratch();
-    };
+    },50);  // ใช้ 50ms พอ ไม่ต้องรอโหลดรูป
 }
+
 
 
 function nextPage(num){
@@ -329,15 +324,22 @@ const ctx=canvas.getContext("2d");
 const container=document.querySelector(".scratch-container");
 
 function initScratch(){
-    canvas.width = container.offsetWidth;
-    canvas.height = container.offsetHeight;
 
-    ctx.clearRect(0,0,canvas.width,canvas.height);  // ล้างก่อน
+    const img = document.getElementById("realImage");
 
-    ctx.fillStyle="#ff99bb";
+    canvas.width = img.offsetWidth;
+    canvas.height = img.offsetHeight;
+
+    canvas.style.width = img.offsetWidth + "px";
+    canvas.style.height = img.offsetHeight + "px";
+
+    ctx.globalCompositeOperation = "source-over";
+    ctx.fillStyle = "#ff99bb";
     ctx.fillRect(0,0,canvas.width,canvas.height);
-    ctx.globalCompositeOperation="destination-out";
+
+    ctx.globalCompositeOperation = "destination-out";
 }
+
 
 let isDrawing=false;
 let popupShown=false;
