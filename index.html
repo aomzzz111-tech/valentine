@@ -55,15 +55,17 @@ button:hover{ transform:scale(1.05); }
 
 .scratch-container{ position:relative; width:100%; margin:15px 0; }
 .real-image{ width:100%; border-radius:15px; }
-#scratch{ 
-    position:absolute; 
-    top:0; 
-    left:0; 
-    width:100%; 
-    height:100%; 
-    border-radius:15px; 
-    touch-action: none;
+#scratch{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    border-radius:15px;
+    touch-action:none;
+    z-index:5;
 }
+
 
 .btn-box{ position:relative; height:120px; }
 .yes-btn{ position:absolute; left:20%; }
@@ -266,10 +268,17 @@ music.currentTime=0;
 
 nextPage(2);
 
-setTimeout(()=>{
+// รอให้รูปโหลดก่อน แล้วค่อยเริ่ม scratch
+const img = document.getElementById("realImage");
+
+if (img.complete) {
     initScratch();
-},100);
+} else {
+    img.onload = function() {
+        initScratch();
+    };
 }
+
 
 function nextPage(num){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
