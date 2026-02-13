@@ -340,14 +340,18 @@ function initScratch(){
     canvas.width = rect.width;
     canvas.height = rect.height;
 
+    // รีเซ็ตโหมดก่อน
     ctx.globalCompositeOperation = "source-over";
-    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    // เติมสีทับ
     ctx.fillStyle = "#ff99bb";
-    ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    // ตั้งค่าโหมดขูด (สำคัญ)
     ctx.globalCompositeOperation = "destination-out";
 }
+
 
 
 
@@ -356,6 +360,10 @@ let popupShown=false;
 
 function scratch(e){
 if(!isDrawing) return;
+
+// บังคับโหมดขูดทุกครั้ง
+ctx.globalCompositeOperation = "destination-out";
+
 const rect=canvas.getBoundingClientRect();
 const x=(e.touches?e.touches[0].clientX:e.clientX)-rect.left;
 const y=(e.touches?e.touches[0].clientY:e.clientY)-rect.top;
