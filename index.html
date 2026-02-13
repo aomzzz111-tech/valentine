@@ -137,23 +137,6 @@ body{
     background:linear-gradient(135deg,#ffd6e8,#fff0f6);
 }
 
-.heart-bg{
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    height:100%;
-    pointer-events:none;
-    z-index:0;   /* เปลี่ยนจาก -1 เป็น 0 */
-}
-
-
-.heart{
-    position:absolute;
-    bottom:-50px;
-    font-size:24px;
-    animation: floatUp linear forwards;
-}
 
 @keyframes floatUp{
     0%{
@@ -179,13 +162,42 @@ body{
     }
 }
 
+/* ===== Layer หัวใจ ===== */
+.heart-bg{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    z-index:0;   /* อยู่ล่างสุด */
+}
+
+    
+.heart{
+    position:absolute;
+    bottom:-50px;
+    font-size:24px;
+    animation: floatUp linear forwards;
+}
+
+
+/* ===== ให้ทุกหน้าอยู่เหนือหัวใจ ===== */
+.page{
+    position:relative;
+    z-index:2;
+}
+
     
 </style>
 </head>
 
 <body>
+
 <div class="heart-bg" id="heartBg"></div>
+
 <div id="page1" class="page active">
+
     
 <div class="box">
 <h2>🤍HappyValentine’sDay🤍</h2>
@@ -242,7 +254,7 @@ body{
   
 <div id="finalScreen" class="final-screen">
     <div class="final-text">
-        55. หนูบังคับพี่ หนูกะรักพี่เยอะสุดนะ🤍🌻 (เขิลได้ยัง? หนูตั้งใจเขียนโค้ด 2 วันเรยนะ🤣)<br><br>
+        🌻55.หนูบังคับพี่ หนูกะรักพี่เยอะสุดนะ🤍(เขิลได้ยัง? หนูตั้งใจเขียนโค้ด 2 วันเรยนะ🤣)<br><br>
         <button onclick="goHome()">กลับหน้าแรก 🤍</button>
     </div>
 </div>
