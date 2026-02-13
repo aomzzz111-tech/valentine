@@ -278,9 +278,8 @@ music.currentTime=0;
 
 nextPage(2);
 
-setTimeout(()=>{
-    initScratch();
-},100);
+initScratch();
+
 }
 
 function nextPage(num){
@@ -332,15 +331,25 @@ const ctx=canvas.getContext("2d");
 const container=document.querySelector(".scratch-container");
 
 function initScratch(){
-    canvas.width = container.offsetWidth;
-    canvas.height = container.offsetHeight;
 
-    ctx.clearRect(0,0,canvas.width,canvas.height);  // ล้างก่อน
+    // รอ layout เสร็จก่อน
+    requestAnimationFrame(()=>{
 
-    ctx.fillStyle="#ff99bb";
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-    ctx.globalCompositeOperation="destination-out";
+        const rect = container.getBoundingClientRect();
+
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+
+        ctx.globalCompositeOperation = "source-over";
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+
+        ctx.fillStyle="#ff99bb";
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+
+        ctx.globalCompositeOperation="destination-out";
+    });
 }
+
 
 let isDrawing=false;
 let popupShown=false;
